@@ -3,7 +3,7 @@ from discord.ext import commands
 import requests
 
 token = YOUR_BOT_PREFIX_HERE
-prefix = YOUR_BOT_TOKEN_HERE
+prefix = !
 
 client = commands.Bot(command_prefix= prefix)
 client.remove_command("help") #to remove the default boring help command
@@ -12,7 +12,7 @@ client.remove_command("help") #to remove the default boring help command
 @client.event
 async def on_ready():
     print("We have logged in as {0.user} ".format(client)) 
-    activity = discord.Game(name=".help", type=3)               # this is to writing prefix in playing a game.(optional)
+    activity = discord.Game(name="Self Service Panel", type=3)               # this is to writing prefix in playing a game.(optional)
     await client.change_presence(status=discord.Status.online, activity=activity) # this is for making the status as an online and writing prefix in playing a game.(optional)  
                             
                             
@@ -20,17 +20,17 @@ async def on_ready():
                             
 #Help commands
 @client.group(invoke_without_command=True)
-async def help(ctx):
+async def start(ctx):
     embed = discord.Embed(title="IndianDesiMemer Help Center ✨",color=0xF49726)
-    embed.add_field(name="Command Categories :",value="🐸 `memes    :` Image generation with a memey twist.\n" + "🔧 `utility  :` Bot utility zone\n😏 `nsfw     :` Image generation with a memey twist.\n\nTo view the commands of a category, send `.help <category>`" ,inline=False)
+    embed.add_field(name="Command Categories :",value=" `Role    :` Claim your roles.\n" + " `Purchase  :` Purchase a item from us!\n😏 `Cancel     :`Cancel the request`" ,inline=False)
     embed.set_footer(icon_url=ctx.author.avatar_url,text="Help requested by: {}".format(ctx.author.display_name))
     await ctx.send(embed=embed)
                             
 
 #Sub-help command of memes
 @help.command ()
-async def memes(ctx):
-    embed=discord.Embed(title="IndianDesiMemer Help Center ✨", description="Commands of **meme** \n`.meme:`Memes",inline=False)
+async def Cancel(ctx):
+    embed=discord.Embed(title="Ticket Being Cancelled!", description="Have a nice day/night!\n`.meme:`Memes",inline=False)
     embed.set_footer(icon_url=ctx.author.avatar_url,text="Command requested by: {}".format(ctx.author.display_name))
     await ctx.send(embed=embed)
                             
